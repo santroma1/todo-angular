@@ -1,5 +1,4 @@
-<div *ngFor = "let item of todoList">
-    <li  class = "list-group-item" [id] = "item.id">
-        {{item.task}}
-    </li>
-</div>
+<li class="list-group-item d-flex justify-content-between align-items-center"  [id]="todoItem.id">
+    <span (click)="changeClass()" [class.done]="isDone()">{{todoItem.task}}</span>
+    <button (click)="deleteEvent.emit(todoItem.id)" class="btn btn-sm btn-danger"><i class = "fa fa-trash"></i></button>
+</li>

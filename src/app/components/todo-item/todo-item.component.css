@@ -1,0 +1,15 @@
+
+li button{
+    opacity: 0;
+    display:inline-block;
+    transition: 0.2s linear;
+}
+
+li:hover button{
+    opacity:1;
+}
+
+.done{
+    text-decoration:line-through;
+    color:#aaa;
+}

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {TodoServiceService } from "./../../services/todo-service.service";
-import {Todo} from "./../../interfaces/todo";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Todo } from 'src/app/interfaces/todo';
+import { TodoServiceService } from 'src/app/services/todo-service.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -9,18 +9,25 @@ import {Todo} from "./../../interfaces/todo";
 })
 export class TodoItemComponent implements OnInit {
 
-    todoList:Todo[] = [];
+
+
+    @Input() todoItem:Todo;
+    @Output() deleteEvent = new EventEmitter();
 
     constructor(private todoService:TodoServiceService) {  }
 
-    getTodoList(){
-        this.todoList = this.todoService.getTodos();
+    ngOnInit(): void {
+
     }
 
 
-    ngOnInit(): void {
-        this.getTodoList();
 
+    isDone(){
+        return this.todoItem.completed;
+    }
+
+    changeClass(){
+        this.todoItem.completed = !this.todoItem.completed;
     }
 
 }
