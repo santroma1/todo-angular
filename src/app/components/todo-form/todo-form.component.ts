@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 
 import { TodoServiceService } from 'src/app/services/todo-service.service';
 import { Todo } from 'src/app/interfaces/todo';
+import { emailValidator, passwordMatch, strongPassword } from './../../utils/util';
+import { errors, passwordMessage} from "./../../utils/errorMessages"
 
 @Component({
   selector: 'app-todo-form',
@@ -12,6 +14,7 @@ import { Todo } from 'src/app/interfaces/todo';
 })
 export class TodoFormComponent implements OnInit {
 
+    passwordError = passwordMessage;
     form:FormGroup;
 
   constructor(
@@ -22,9 +25,9 @@ export class TodoFormComponent implements OnInit {
   createForm(){
       return this.fb.group({
           title:"",
-          task: ["", [Validators.maxLength(5), Validators.required]],
+          task: ["", [Validators.minLength(3), Validators.required]],
           email:["", emailValidator],
-          password:[""],
+          password:["", strongPassword],
           confirmPassword:[""]
       },{
           validators: [passwordMatch]
@@ -32,7 +35,7 @@ export class TodoFormComponent implements OnInit {
   }
 
   addNewTask(){
-      console.log(this.form, this.form.get("task"))
+      console.log(this.form, this.form.get("password"))
       if(this.form.valid){
           //console.log(this.form)
           const todo = new Todo({
@@ -61,13 +64,13 @@ export class TodoFormComponent implements OnInit {
       return this.form.get("task");
   }
 
+  get password():AbstractControl{
+      return this.form.get("password");
+  }
+
   getErrorMessage(control:AbstractControl){
       for(const propertyErrorName in control.errors){
           if(control.errors.hasOwnProperty(propertyErrorName)){
-              const errors = {
-                  required:"This field is required",
-                  maxLength:"The min length is not met"
-              };
               return errors[propertyErrorName];
           }
       }
@@ -75,20 +78,4 @@ export class TodoFormComponent implements OnInit {
   }
 
 
-}
-
-function emailValidator(control: FormControl):{emailInvalid:boolean} | null{
-    const {value} = control;
-    const EMAIL_REGEX = new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$');
-    return EMAIL_REGEX.test(value) ? null :{
-        emailInvalid:true
-    };
-}
-
-function passwordMatch(form:FormGroup): {notequal:boolean} | null{
-    const password = form.get("password").value;
-    const confirmPassword = form.get("confirmPassword").value;
-    return password === confirmPassword ? null :{
-        notequal:true
-    };
 }
