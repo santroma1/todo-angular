@@ -1,4 +1,9 @@
 
-<div *ngFor="let item of todoList">
-    <app-todo-item [todoItem]="item" (deleteEvent)=deleteTodo(item.id)></app-todo-item>
-</div>
+
+<h1 class="card-title"> Todo App</h1>
+<app-todo-form></app-todo-form>
+<ul class="list-group">
+    <div *ngFor="let item of todoList">
+        <app-todo-item [todoItem]="item" (deleteEvent)=deleteTodo(item.id)></app-todo-item>
+    </div>
+</ul>
