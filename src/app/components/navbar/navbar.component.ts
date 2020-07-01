@@ -15,14 +15,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLoginButtonClick():void{
-      this.router.navigate(['/login']);
-  }
-
-  onSignupButtonClick():void{
-      this.router.navigate(['/signup']);
-  }
-
   onTodoButtonClick():void{
       this.router.navigate(['/todolist']);
   }

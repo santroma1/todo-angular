@@ -35,7 +35,6 @@ export class TodoFormComponent implements OnInit {
   }
 
   addNewTask(){
-      console.log(this.form, this.form.get("password"))
       if(this.form.valid){
           //console.log(this.form)
           const todo = new Todo({
@@ -76,6 +75,7 @@ export class TodoFormComponent implements OnInit {
       }
       return null;
   }
+
 
 
 }
