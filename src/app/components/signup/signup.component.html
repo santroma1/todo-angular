@@ -1,25 +1,29 @@
-<form>
+<form novalidate [formGroup]='form' class="mb-3">
   <div class="form-group">
     <label for="InputName1">Name</label>
-    <input type="text" class="form-control" id="InputName1">
+    <input formControlName="name" type="text" class="form-control" id="InputName1">
+    <span *ngIf="name.invalid && (name.dirty||name.touched)">A name is required</span>
   </div>
   <div class="form-group">
     <label for="InputEmail1">Email address</label>
-    <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+    <input type="email" formControlName="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <span class="alert" *ngIf="email.errors?.emailInvalid && (email.dirty || email.touched)">Invalid email</span>
   </div>
   <div class="form-group">
     <label for="InputPassword1">Password</label>
-    <input type="password" class="form-control" id="InputPassword1">
+    <input formControlName="password" type="password" class="form-control" id="InputPassword1">
+    <span *ngIf="password.errors?.passwordInvalid && (password.dirty || password.touched)">{{passwordError}}</span>
   </div>
   <div class="form-group">
     <label for="InputPassword2">Confirm Password</label>
-    <input type="password" class="form-control" id="InputPassword2" aria-discribedby="passMatchHelp">
+    <input type="password" formControlName="confirmPassword" class="form-control" id="InputPassword2" aria-discribedby="passMatchHelp">
     <small id="passMatchHelp" class="form-text text-muted">Confirm Password</small>
+    <span class="alert" *ngIf="form.errors?.notequal">Password dont match</span>
   </div>
-  <div class="form-group form-check">
+  <!-- <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="Check1">
     <label class="form-check-label" for="Check1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  </div> -->
+  <button type="submit" (click)="addUser()" class="btn btn-primary">Submit</button>
 </form>

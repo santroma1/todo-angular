@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { TodoServiceService } from 'src/app/services/todo-service.service';
 import { Todo } from 'src/app/interfaces/todo';
 import { emailValidator, passwordMatch, strongPassword } from './../../utils/util';
-import { errors, passwordMessage} from "./../../utils/errorMessages"
+import { errors, passwordMessage } from "./../../utils/errorMessages"
 
 @Component({
   selector: 'app-todo-form',
