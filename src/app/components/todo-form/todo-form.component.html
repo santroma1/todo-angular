@@ -1,9 +1,7 @@
 
 
-
 <form novalidate [formGroup]="form" class="mb-3">
     <input class="form-control form-control-lg" formControlName="task" (keyup.enter)="addNewTask()"  type="text" placeholder="Add new todo" required>
     <small *ngIf="task.invalid && (task.dirty || task.touched)">{{getErrorMessage(task)}}</small>
     <!-- <pre>{{form | json}}</pre> <!--This is like a console .log-->
 </form>
-<!-- *ngIf="password.errors?.passwordInvalid && (password.dirty || password.touched)" -->

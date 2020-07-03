@@ -5,7 +5,24 @@ import { Todo } from '../interfaces/todo';
   providedIn: 'root'
 })
 export class TodoServiceService {
-    private todoList:Todo[];
+    private todoList:Todo[] = [
+        {
+            id:1,
+            task:"Have a class",
+            completed:false
+        },
+        {
+            id:2,
+            task:"Attend the meeting",
+            completed:true
+        },
+        {
+            id:3,
+            task:"Finish Todo App",
+            completed:false
+        }
+    ];
+
     lastId :number;
 
   constructor() {
@@ -17,24 +34,6 @@ export class TodoServiceService {
    }
 
   getTodos(){
-      this.todoList = [
-          {
-              id:1,
-              task:"Have a class",
-              completed:false
-          },
-          {
-              id:2,
-              task:"Attend the meeting",
-              completed:true
-          },
-          {
-              id:3,
-              task:"Finish Todo App",
-              completed:false
-          }
-      ]
-
       return this.todoList;
   }
 

@@ -31,6 +31,10 @@ export class SignupComponent implements OnInit {
       return this.form.get("password");
   }
 
+  get confirmPassword(): AbstractControl{
+      return this.form.get("confirmPassword");
+  }
+
   get email():AbstractControl{
       return this.form.get("email");
   }
@@ -39,12 +43,19 @@ export class SignupComponent implements OnInit {
       return this.form.get("name");
   }
 
+  canDeactivate(){
+      if(this.form.dirty || this.form.touched){
+          return window.confirm("Are you already want to leave this page?");
+      }
+      return true;
+  }
+
   createForm(){
       return this.fb.group({
           name:["", Validators.required],
           email:["", [emailValidator]],
-          password:[""/*, strongPassword*/],
-          confirmPassword:[""]
+          password:["", [Validators.required/*, strongPassword*/]],
+          confirmPassword:["", [Validators.required]]
       },{
           validators: [passwordMatch]
       });

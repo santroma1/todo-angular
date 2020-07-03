@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
                 this.error="";
                 this.router.navigate(['todolist']);
             }else{
+                this.success="";
                 this.error="Invalid user";
             }
          }

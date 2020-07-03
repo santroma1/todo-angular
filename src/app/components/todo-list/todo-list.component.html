@@ -11,6 +11,7 @@
                         <div *ngFor="let item of todoList">
                             <app-todo-item [todoItem]="item" (deleteEvent)=deleteTodo(item.id)></app-todo-item>
                         </div>
+                        <button routerLink="new-todo" class="btn btn-sm btn-secondary">New Todo</button>
                     </ul>
                 </div>
             </div>
