@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NgModel } from '@angular/forms';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes:Routes = [
     {
@@ -30,7 +31,8 @@ const routes:Routes = [
     },
     {
         path:"todolist",
-        component:TodoListComponent
+        component:TodoListComponent,
+        canActivate:[AuthGuard]
     },
     {
         path:"**",

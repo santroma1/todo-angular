@@ -1,9 +1,20 @@
 
 
-<h1 class="card-title"> Todo App</h1>
-<app-todo-form></app-todo-form>
-<ul class="list-group">
-    <div *ngFor="let item of todoList">
-        <app-todo-item [todoItem]="item" (deleteEvent)=deleteTodo(item.id)></app-todo-item>
+<div class = "container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title"> Todo App</h1>
+                    <app-todo-form></app-todo-form>
+                    <ul class="list-group">
+                        <div *ngFor="let item of todoList">
+                            <app-todo-item [todoItem]="item" (deleteEvent)=deleteTodo(item.id)></app-todo-item>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-</ul>
+
+</div>

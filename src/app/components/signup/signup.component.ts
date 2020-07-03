@@ -20,6 +20,8 @@ export class SignupComponent implements OnInit {
 
   passwordError = passwordMessage;
   form:FormGroup;
+  showPass=false;
+  showConfirmPass=false;
 
   ngOnInit(): void {
       this.form = this.createForm();
@@ -40,7 +42,7 @@ export class SignupComponent implements OnInit {
   createForm(){
       return this.fb.group({
           name:["", Validators.required],
-          email:["", emailValidator],
+          email:["", [emailValidator]],
           password:[""/*, strongPassword*/],
           confirmPassword:[""]
       },{
@@ -48,24 +50,17 @@ export class SignupComponent implements OnInit {
       });
   }
 
-  addUser(){
-      console.log(this.form.valid);
-    if(this.form.valid){
-            const user = new User({
-                name:this.form.value.name,
-                email:this.form.value.email,
-                password:this.form.value.password
-            })
-            this.userService.addNewUser(user);
+  addUser({valid, value}: {valid:boolean, value:User}){
+      console.log(valid);
+    if(valid){
+            const data = this.userService.addNewUser(value);
             this.form.reset();
+            this.router.navigate(['login'],{
+                queryParams:data
+            });
         }
 
     }
 
-    back(){
-        this.router.navigate(['login'],{
-            queryParams:{error:"an error occured"}
-        })
-    }
 
 }

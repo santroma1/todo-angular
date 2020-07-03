@@ -1,14 +1,9 @@
+
+
+
 <form novalidate [formGroup]="form" class="mb-3">
-    <input class="form-control form-control-lg" formControlName="title" (keyup.enter)="addNewTask()"  type="text" placeholder="title">
-    <input class="form-control form-control-lg" formControlName="email" (keyup.enter)="addNewTask()"  type="text" placeholder="email">
-    <span class="alert" *ngIf="email.errors?.emailInvalid && (email.dirty || email.touched)">Invalid email</span>
-    <input class="form-control form-control-lg" formControlName="password" (keyup.enter)="addNewTask()"  type="password" placeholder="password">
-    <span *ngIf="password.errors?.passwordInvalid && (password.dirty || password.touched)">{{passwordError}}</span>
-    <input class="form-control form-control-lg" formControlName="confirmPassword" (keyup.enter)="addNewTask()" type="password" placeholder="confirm password">
-    <span class="alert" *ngIf="form.errors?.notequal">Password dont match</span>
-    <hr>
     <input class="form-control form-control-lg" formControlName="task" (keyup.enter)="addNewTask()"  type="text" placeholder="Add new todo" required>
-    <span *ngIf="task.invalid && (task.dirty || task.touched)">{{getErrorMessage(task)}}</span>
+    <small *ngIf="task.invalid && (task.dirty || task.touched)">{{getErrorMessage(task)}}</small>
     <!-- <pre>{{form | json}}</pre> <!--This is like a console .log-->
 </form>
 <!-- *ngIf="password.errors?.passwordInvalid && (password.dirty || password.touched)" -->

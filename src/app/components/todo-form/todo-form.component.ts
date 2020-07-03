@@ -24,13 +24,8 @@ export class TodoFormComponent implements OnInit {
 
   createForm(){
       return this.fb.group({
-          title:"",
           task: ["", [Validators.minLength(3), Validators.required]],
-          email:["", emailValidator],
-          password:["", strongPassword],
-          confirmPassword:[""]
-      },{
-          validators: [passwordMatch]
+          
       });
   }
 
