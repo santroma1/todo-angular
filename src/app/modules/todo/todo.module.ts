@@ -9,6 +9,10 @@ import { TodoListComponent } from 'src/app/components/todo-list/todo-list.compon
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { SingleFormContainerComponent } from 'src/app/components/single-form-container/single-form-container.component';
+import { TabsComponent } from '../../components/tabs/tabs.component';
+import { TabComponent } from '../../components/tab/tab.component';
+import { EmptyHrefDirective } from '../../directives/empty-href.directive';
+import { FilterPipe } from '../../pipes/filter.pipe';
 
 
 
@@ -17,7 +21,11 @@ import { SingleFormContainerComponent } from 'src/app/components/single-form-con
       TodoListComponent,
       TodoFormComponent,
       TodoItemComponent,
-      SingleFormContainerComponent
+      SingleFormContainerComponent,
+      TabsComponent,
+      TabComponent,
+      EmptyHrefDirective,
+      FilterPipe
   ],
   imports: [
     CommonModule,

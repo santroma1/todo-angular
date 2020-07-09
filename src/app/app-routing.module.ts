@@ -28,7 +28,7 @@ const routes:Routes = [
     },
     {   path: 'todolist',
         loadChildren: () => import('./modules/todo/todo.module').then(m => m.TodoModule),
-        canLoad:[AuthGuard]
+        canActivate:[AuthGuard]
     },
     {
         path:"**",

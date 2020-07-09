@@ -7,15 +7,28 @@
                 <div class="card-body">
                     <h1 class="card-title"> Todo App</h1>
                     <app-todo-form></app-todo-form>
-                    <ul class="list-group">
-                        <div *ngFor="let item of todoList">
-                            <app-todo-item [todoItem]="item" (deleteEvent)=deleteTodo(item.id)></app-todo-item>
-                        </div>
-                        <button routerLink="new-todo" class="btn btn-sm btn-secondary">New Todo</button>
-                    </ul>
+
+                    <app-tabs (refreshTabs)="getTodoList()">
+                        <app-tab *ngFor="let tab of tabs" [title]="tab">
+                            <ul class="list-group">
+                                <div *ngFor="let item of todoList | filter:tab">
+                                    <app-todo-item [todoItem]="item" (refreshItem)="getTodoList()" (deleteEvent)="deleteTodo(item.id)"></app-todo-item>
+                                </div>
+                            </ul>
+                        </app-tab>
+                        <!-- <app-tab [title]="'ExampleRef'" id="allTodos" #allTodos>
+                        </app-tab> -->
+                    </app-tabs>
+
+                    <!-- <div *ngIf="allTodos.active">
+                        Ejemplo de referencia
+                    </div> -->
+                    <button routerLink="new-todo" class="btn mt-3 btn-secondary">New Todo</button>
                 </div>
             </div>
         </div>
+
+
     </div>
 
 </div>
