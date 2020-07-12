@@ -11,7 +11,7 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
 export class TabsComponent implements OnInit, AfterContentInit {
 
     @ContentChildren(TabComponent) tabs:QueryList<TabComponent>;
-    @Output() refreshTabs = new EventEmitter();
+    @Output() selectedTab = new EventEmitter();
 
   constructor(
   ) { }
@@ -30,8 +30,7 @@ export class TabsComponent implements OnInit, AfterContentInit {
   onSelect(tab:TabComponent){
       this.tabs.toArray().forEach((tabItem)=> tabItem.active = false );
       tab.active=true;
-      this.refreshTabs.emit();
-
+      this.selectedTab.emit(tab);
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, AfterContentInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Todo } from 'src/app/interfaces/todo';
 import { TodoServiceService } from 'src/app/services/todo-service.service';
+import { TabComponent } from '../tab/tab.component';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,13 +13,15 @@ export class TodoListComponent implements OnInit, AfterContentInit, AfterViewIni
     @ViewChild("allTodos") allTodos: ElementRef;
     todoList:Todo[] = [];
     tabs:string[] = ["All", "Completed", "Pending"];
+    filterBy: string="All";
 
     constructor(private todoService:TodoServiceService,
                 private cd:ChangeDetectorRef
     ) {  }
 
     ngAfterViewInit(){
-        console.log(this.allTodos);
+        //Demostrativo
+        //console.log(this.allTodos);
     }
 
 
@@ -28,7 +31,6 @@ export class TodoListComponent implements OnInit, AfterContentInit, AfterViewIni
 
 
     getTodoList(){
-        console.log("EVENT");
         this.todoList = this.todoService.getTodos();
     }
 
@@ -42,5 +44,13 @@ export class TodoListComponent implements OnInit, AfterContentInit, AfterViewIni
         this.todoList = this.todoService.deleteTodo(idToDelete);
     }
 
+    updateTodoList(todo:Todo){
+        this.todoList = this.todoService.updateTodo(todo);
+    }
+
+    onChangeTab(currentTab:TabComponent){
+        this.filterBy = currentTab.title;
+        this.getTodoList();
+    }
 
 }

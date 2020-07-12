@@ -12,7 +12,7 @@ export class TodoItemComponent implements OnInit {
 
     @Input() todoItem:Todo;
     @Output() deleteEvent = new EventEmitter();
-    @Output() refreshItem = new EventEmitter();
+    @Output() updateItem = new EventEmitter();
 
     constructor() {  }
 
@@ -27,7 +27,7 @@ export class TodoItemComponent implements OnInit {
 
     changeClass(){
         this.todoItem.completed = !this.todoItem.completed;
-        this.refreshItem.emit();
+        this.updateItem.emit(this.todoItem);
     }
 
 }
