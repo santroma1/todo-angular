@@ -13,6 +13,7 @@ import { TabsComponent } from '../../components/tabs/tabs.component';
 import { TabComponent } from '../../components/tab/tab.component';
 import { EmptyHrefDirective } from '../../directives/empty-href.directive';
 import { FilterPipe } from '../../pipes/filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -30,7 +31,8 @@ import { FilterPipe } from '../../pipes/filter.pipe';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TodoRoutingModule
+    TodoRoutingModule,
+    HttpClientModule
   ]
 })
 export class TodoModule { }

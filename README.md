@@ -1,3 +1,11 @@
+This project's main purpose was to get an introduction on how to use Angular.
+
+It is a todo list that enables login and signup, styled with Bootstrap. The items in todo list can dynamically change state, and you can elimiante todos as well.
+
+No DB implemenation is provided but there is a Service in the project that may allow that for future developing.
+
+Below find the default README info for Angular projects.
+
 # TodoAngular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.

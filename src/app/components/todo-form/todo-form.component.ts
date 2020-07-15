@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, AbstractControl } from '@angular/forms';
 import { FormBuilder, FormGroup } from "@angular/forms";
 
 import { TodoServiceService } from 'src/app/services/todo-service.service';
 import { Todo } from 'src/app/interfaces/todo';
 import { errors } from "./../../utils/errorMessages"
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.css']
 })
-export class TodoFormComponent implements OnInit {
+export class TodoFormComponent implements OnInit, OnDestroy {
 
     form:FormGroup;
+    sub:Subscription;
 
   constructor(
       private todoService:TodoServiceService,
@@ -22,8 +24,9 @@ export class TodoFormComponent implements OnInit {
 
   createForm(){
       return this.fb.group({
-          task: ["", [Validators.minLength(3), Validators.required]],
-
+          title: ["", [Validators.minLength(3), Validators.required]],
+          userId:11,
+          completed:[false]
       });
   }
 
@@ -32,9 +35,9 @@ export class TodoFormComponent implements OnInit {
       if(this.form.valid){
           //console.log(this.form)
           const todo = new Todo({
-              task:this.form.value.task
+              title:this.form.value.title
           })
-          this.todoService.addNewTodo(todo);
+          this.todoService.createTodoItem(todo).subscribe(data =>console.log(data));
           this.form.reset();
       }
   }
@@ -50,8 +53,8 @@ export class TodoFormComponent implements OnInit {
   }
 
 
-  get task():AbstractControl{
-      return this.form.get("task");
+  get title():AbstractControl{
+      return this.form.get("title");
   }
 
 
@@ -62,6 +65,12 @@ export class TodoFormComponent implements OnInit {
           }
       }
       return null;
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
   }
 
 

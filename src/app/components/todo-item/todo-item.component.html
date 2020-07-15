@@ -1,4 +1,4 @@
 <li class="list-group-item d-flex justify-content-between align-items-center"  [id]="todoItem.id">
-    <span class="card-text" (click)="changeClass()" [class.done]="isDone()">{{todoItem.task}}</span>
+    <span class="card-text" (click)="changeClass()" [class.done]="isDone()">{{todoItem.title}}</span>
     <button (click)="deleteEvent.emit(todoItem.id)" class="btn btn-sm btn-danger"><i class = "fa fa-trash"></i></button>
 </li>

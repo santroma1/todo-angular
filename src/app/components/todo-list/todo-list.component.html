@@ -19,14 +19,30 @@
                     <!-- <div *ngIf="allTodos.active">
                         Ejemplo de referencia
                     </div> -->
-                    <ul class="list-group">
+                    <!-- <ul class="list-group">
                         <div *ngFor="let item of todoList | filter:filterBy">
                             <app-todo-item [todoItem]="item"
                                             (updateItem)="updateTodoList($event)"
                                             (deleteEvent)="deleteTodo(item.id)">
                             </app-todo-item>
                         </div>
-                    </ul>
+                    </ul> -->
+                    <!-- <div *ngIf="(todoListAsync | async) | filter:filterBy as results"> -->
+                    <div *ngIf="(todoListAsync | async) as results">
+                        <ul class="list-group">
+                                <div *ngIf="results.length; else noItems">
+                                    <app-todo-item *ngFor="let item of results" [todoItem]="item"
+                                    (updateItem)="updateTodoList($event)"
+                                    (deleteEvent)="deleteTodo(item.id)">
+                                </app-todo-item>
+                            </div>
+                        </ul>
+                        <ng-template #noItems>
+                            No items here!
+                        </ng-template>
+                    </div>
+
+
                     <button routerLink="new-todo" class="btn mt-3 btn-secondary">New Todo</button>
                 </div>
             </div>
